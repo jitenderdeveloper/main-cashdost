@@ -1,9 +1,9 @@
 import React from 'react'
 
-function EmailVerify() {
+function Verify() {
   return (
     <div>Your E-mail is Successfully Verify ...</div>
   )
 }
 
-export default EmailVerify
+export default Verify

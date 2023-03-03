@@ -58,8 +58,6 @@ function Register() {
           </span>
           <input
             type="text"
-            name=""
-            id=""
             placeholder="Name"
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -70,8 +68,6 @@ function Register() {
           </span>
           <input
             type="email"
-            name=""
-            id=""
             placeholder="E-mail"
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -82,8 +78,6 @@ function Register() {
           </span>
           <input
             type="phone"
-            name=""
-            id=""
             placeholder="Phone"
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -94,8 +88,6 @@ function Register() {
           </span>
           <input
             type="password"
-            name=""
-            id=""
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />

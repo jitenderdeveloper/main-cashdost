@@ -32,7 +32,7 @@ function Login() {
           // console.log("localStorage ->", result.error);
           if(result.username === username){
             const local = localStorage.setItem("user_data",JSON.stringify(result));
-            window.location.reload();
+            // window.location.reload();
           }
           toast(result.message);
         })
@@ -56,8 +56,6 @@ function Login() {
           </span>
           <input
             type="text"
-            name=""
-            id=""
             placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -68,8 +66,6 @@ function Login() {
           </span>
           <input
             type="password"
-            name=""
-            id=""
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />

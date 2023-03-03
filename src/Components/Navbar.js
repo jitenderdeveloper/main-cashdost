@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Auth from "./Auth";
 
@@ -11,6 +11,7 @@ function Navbar() {
     localStorage.clear();
     nevigate("/");
   }
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,14 +42,14 @@ function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="/TodayDeals">
                   Today Deals
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="/TOpOffers">
                   Top Offers
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">

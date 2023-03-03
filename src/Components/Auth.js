@@ -13,7 +13,7 @@ function Auth() {
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
-        tabindex="-1"
+        // tabindex="-1"
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">

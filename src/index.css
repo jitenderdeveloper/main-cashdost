@@ -8,6 +8,16 @@ body {
   background-color: var(--body-color);
 }
 
+body::-webkit-scrollbar{
+  width: 10px;
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb{
+  background-image: var(--hover-color);
+  border-radius: var(--border-radius-60px);
+}
+
 
 :root{
   --body-color: #f4f6f6;
@@ -19,6 +29,7 @@ body {
 
   --same-color: rgb(136, 136, 136);
   --font-color: #252525;
+  --link-color: #1c75bc;
 }
 a{
   text-decoration: none;
@@ -32,42 +43,66 @@ a, button{
 }
 
 
+.card-button a,
+.deals-heading a,
+.slider-card,
 .dropdown-menu .nav-item,
 .dropdown-menu li:nth-last-child(1){
   transition: all 0.3s ease-in-out !important;
 }
 
+
+
+.client-logo img,
+.card-logo img,
+.client-button img,
+.banner-img img,
 .navbar-light .navbar-brand img,
 .icon-img img,
 .dropdown-toggle img{
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain !important;
 }
 
+
+
+.image-deals img,
+.card-img img,
+.coupons-banner img,
+.header-img img,
 .slider-banner img{
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+
+.card-content,
 .form-input{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
+
+
+.link-live,
+.link-live a,
 .google-sign,
 .input-fields .icon{
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.deals-heading,
 .form-button-slider{
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 
 .google a,
 .input-fields{
@@ -82,6 +117,7 @@ a, button{
 }
 
 
+
 .form-button-slider button,
 .input-fields button,
 .signup-btn button{
@@ -92,6 +128,8 @@ a, button{
   border-radius: var(--border-radius-60px);
 }
 
+
+.card-button a:hover,
 .form-button-slider button:hover,
 .signup-btn button:hover,
 .input-fields button:hover{
@@ -103,6 +141,8 @@ a, button{
 .forgot a:hover{
   text-decoration: underline;
 }
+
+
 
 .form-button-slider button:focus,
 .signup-btn button:focus, .signup-btn button:active,
@@ -341,4 +381,278 @@ a, button{
   background-image: var(--hover-color);
   color: var(--bg-color) !important;
   font-weight: lighter !important;
+}
+
+
+
+
+
+
+/* -----------------header-section-start----------------------- */
+.header-section{
+  /* border: 1px solid red; */
+  overflow: hidden !important;
+}
+.swiper-slide{
+  /* border: 1px solid red; */
+}
+.header-img{
+  width: 100%;
+  height: 90vh;
+}
+
+.swiper-button-next, .swiper-rtl .swiper-button-prev,
+.swiper-button-prev, .swiper-rtl .swiper-button-next {
+  left: var(--swiper-navigation-sides-offset,10px);
+  right: auto;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  background-image: var(--hover-color);
+}
+
+
+.swiper-button-prev:after,
+.swiper-button-next:after{
+  font-size: 1.5rem !important;
+  color: var(--bg-color) !important;
+}
+
+.banner-img{
+  width: 100%;
+  height: 26.6vh;
+}
+.coupons-banner{
+  height: 40vh;
+}
+
+
+
+
+
+
+
+/* --------------------hot-deals-card-section--------------- */
+.hot-deals{
+  /* border: 1px solid red; */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.deals-heading{
+  border-bottom: 1px solid var(--font-color);
+  padding: 10px 0;
+}
+.deals-heading h4{
+  font-size: 1rem;
+  margin-bottom: 0;
+  font-weight: bold;
+  color: var(--font-color);
+}
+.deals-heading a{
+  color: var(--font-color);
+}
+.deals-heading a:hover{
+  color: var(--link-color);
+  text-decoration: underline !important;
+}
+
+.slider-card{
+  box-shadow: 0px 0px 16px -8px var(--link-color);
+  height: auto;
+  border-radius: var(--radius);
+  padding: 6px;
+}
+.slider-card:hover{
+  box-shadow: 0px 0px 16px -4px var(--link-color);
+}
+.slider-card:hover .link-live{
+  bottom: 0;
+  opacity: 1;
+  visibility: visible;
+}
+.card-img{
+  width: 100%;
+  height: 40vh;
+  margin-bottom: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.card-img img{
+  border-radius: var(--radius);
+}
+
+.card-content{
+  /* border: 1px solid red; */
+  color: var(--font-color);
+  text-align: center;
+  height: 23vh;
+}
+.card-content h1{
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.card-content h6{
+  font-size: 14px;
+  color: var(--font-color);
+}
+.offer-content p,
+.card-content h5{
+  font-size: 13px;
+  color: var(--link-color);
+}
+
+
+.link-live{
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+  border-radius: var(--radius);
+  background-color: #00000048;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease-in-out;
+}
+.link-live a{
+  background-color: var(--bg-color);
+  padding: 0 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem !important;
+  text-align: center;
+  border-radius: 50%;
+  color: var(--font-color);
+  margin: 2px;
+}
+.link-live a:hover{
+  background-image: var(--hover-color);
+  color: var(--bg-color);
+}
+
+
+
+
+/* --------------client-filter-section-------------- */
+.client-filter-section{
+  /* border: 1px solid red; */
+  margin-top: 6rem !important;
+}
+.scroll-bar{
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+.scroll-bar::-webkit-scrollbar{
+  display: none;
+}
+.client-button{
+  /* border: 1px solid red; */
+  width: 100%;
+}
+.client-button{
+  background-color: var(--bg-color);
+  height: 8vh;
+  margin: 0 5px;
+}
+.client-button:nth-child(1){
+  margin-left: 0 !important;
+}
+.client-button:nth-last-child(1){
+  margin-right: 0 !important;
+}
+.client-button:focus{
+  box-shadow: 0px 0px 16px -8px var(--link-color) !important;
+}
+
+
+
+
+
+
+/* ----------------Tranding-section---------------- */
+.Tranding-section{
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+}
+.card-logo{
+  /* border: 1px solid red; */
+  height: 18vh;
+  padding: 0 2rem;
+}
+
+
+
+
+
+
+
+
+.offer-card{
+  /* border: 1px solid red; */
+  text-align: center;
+}
+.card-button{
+  width: 100%;
+}
+.card-button a{
+  padding: 8px;
+  width: 100%;
+  border-radius: var(--radius);
+  background-image: var(--gradient-color);
+  color: var(--bg-color);
+}
+.offer-content{
+  height: 14vh;
+}
+.coupon-img{
+  width: 70%;
+  height: 10vh;
+  margin: 0 auto;
+}
+
+.offer-content h5,
+.offer-content h4{
+  font-size: 17px;
+  color: var(--font-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.image-deals{
+  width: 100%;
+  height: 25vh;
+}
+.image-deals img{
+  border-radius: var(--radius);
+}
+.client-logo{
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  width: 30%;
+  height: 7vh;
+  margin: 0 auto;
+}
+.deals-content{
+  text-align: center;
+}
+.deals-content h4{
+  font-size: 13px;
+  color: var(--font-color);
+}
+.deals-content h5{
+  font-size: 14px;
 }
