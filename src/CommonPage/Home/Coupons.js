@@ -15,7 +15,7 @@ function Coupons() {
       .then((res) => res.json())
       .then((result) => {
         let fetcD = result.coupon_data;
-        console.log("product data -->", fetcD);
+        // console.log("product data -->", fetcD);
         setData(fetcD);
         // // http://localhost:8000/public/image/
         setImg(`${FILE_UPLOADS}/${fetcD.image}`);

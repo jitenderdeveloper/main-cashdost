@@ -4,7 +4,7 @@ import { FILE_UPLOADS, URL_LINK } from "../../Secure/Helper";
 function ClientButton() {
   const [data, setData] = useState([]);
   const dataFilter = data.filter((val, index) => data.indexOf(val) == index);
-  console.log('filter data ---->',dataFilter)
+  // console.log('filter data ---->',dataFilter)
   const [img, setImg] = useState("");
 
   const getData = () => {
