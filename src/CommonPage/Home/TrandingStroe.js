@@ -6,10 +6,10 @@ import { FILE_UPLOADS, URL_LINK } from "../../Secure/Helper";
 
 function TrandingStroe() {
   const [data, setData] = useState([]);
-  const [img, setImg] = useState("");
+  // const [img, setImg] = useState("");
 
   const getData = () => {
-    fetch(`${URL_LINK}/client`, {
+    fetch(`${URL_LINK}/product-client`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -18,7 +18,7 @@ function TrandingStroe() {
           // console.log('product data -->', fetcD);
         setData(fetcD);
         // // http://localhost:8000/public/image/
-        setImg(`${FILE_UPLOADS}/${fetcD.image}`);
+        // setImg(`${FILE_UPLOADS}/${fetcD.image}`);
       });
   };
 
@@ -30,10 +30,7 @@ function TrandingStroe() {
       <div className="container Tranding-section">
         <GridHeading title="Trending Store" link="/" />
         <div className="row mb-5">
-          {data
-            .reverse()
-            .slice(0, 4)
-            .map((val, ind) => {
+          {data?.reverse().slice(0,4).map((val, ind) => {
               const { _id, title, link, offer, image } = val;
               return (
                 <div key={ind} className="col-lg-3 col-md-3 col-12">

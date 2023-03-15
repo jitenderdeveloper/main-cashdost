@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import Auth from "./Auth";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const nevigate = useNavigate();
@@ -9,16 +8,16 @@ function Navbar() {
   // console.log(user);
   const LogoutHandler = () =>{
     localStorage.clear();
-    nevigate("/");
+    nevigate("/user-profile-authorization");
   }
 
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             <img src="../assets/image/logo.png" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -37,24 +36,24 @@ function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/AllStores">
+                <NavLink className="nav-link" to="/product-store">
                   All Stores
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/TodayDeals">
+                <NavLink className="nav-link" to="/today-hot-deals">
                   Today Deals
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/TOpOffers">
+                <NavLink className="nav-link" to="/today-top-offers">
                   Top Offers
                 </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="/latest-coupouns">
                   Coupons
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -62,13 +61,11 @@ function Navbar() {
           {!user ? (
             <>
               <div className="signup-btn">
-                <button
+                <Link to="/user-profile-authorization"
                   type="button"
-                  className="btn"
-                  data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop">
-                  Login
-                </button>
+                  className="btn">
+                  Login / Signup
+                </Link>
               </div>
             </>
           ) : (
@@ -88,9 +85,9 @@ function Navbar() {
                       <h5>Hey, {user.username}</h5>
                     </div>
                     <li className="nav-item">
-                      <a className="nav-link" href="#">
+                      <Link className="nav-link" to="/user-profile">
                         Profile
-                      </a>
+                      </Link>
                     </li>
                     <li className="nav-item">
                       <a className="nav-link" href="#">
@@ -112,7 +109,7 @@ function Navbar() {
 
       {/* -------login-modal-section----- */}
 
-      <Auth />
+      {/* <Auth /> */}
     </>
   );
 }

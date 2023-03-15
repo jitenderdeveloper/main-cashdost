@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../Components/Navbar";
-import { FILE_UPLOADS, URL_LINK } from "../Secure/Helper";
+import GridHeading from "../../Components/GridHeading";
+import { FILE_UPLOADS, URL_LINK } from "../../Secure/Helper";
 
-function TopOffers() {
+function TopOffer() {
   const [data, setData] = useState([]);
   const [img, setImg] = useState("");
   // console.log('product image -->', img);
@@ -27,11 +27,11 @@ function TopOffers() {
   }, []);
   return (
     <>
-    <Navbar />
-      <div className="container">
-        <div className="row mb-5 mt-4">
+      <div className="container Tranding-section">
+        <GridHeading title="Top Offers" />
+        <div className="row mb-5">
           {data.map((val, ind) => {
-            const {_id, image} = val;
+            const { _id, image } = val;
             return (
               <div key={ind} className="col-lg-3 col-md-3 col-12 mb-4">
                 <Link to="">
@@ -48,4 +48,4 @@ function TopOffers() {
   );
 }
 
-export default TopOffers;
+export default TopOffer;

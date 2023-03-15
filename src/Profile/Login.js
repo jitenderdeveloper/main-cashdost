@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FiLock, FiUser } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { URL_LINK } from "../Secure/Helper";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,14 @@ function Login() {
     const AllData = { username: username, password: password };
     if (!username || !password) {
       toast.error("all fields are required...", {
-        theme: "light",
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
     } else {
       fetch(`${URL_LINK}/user/login`, {
@@ -29,19 +36,53 @@ function Login() {
       })
         .then((res) => res.json())
         .then((result) => {
-          // console.log("localStorage ->", result.error);
-          if(result.username === username){
-            const local = localStorage.setItem("user_data",JSON.stringify(result));
-            // window.location.reload();
+          let AllLogin = result.user;
+          if (!AllLogin) {
+            toast.error(result.message, {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          } else {
+            const local = localStorage.setItem(
+              "user_data",
+              JSON.stringify(AllLogin)
+            );
+            toast.success(`Hey ${AllLogin.username} Welcome to Cashdost`, {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+            setTimeout(() => {
+              nevigate("/user-profile");
+            }, 2000);
+            
           }
-          toast(result.message);
         })
         .catch((err) => {
-          toast.error("Login is not working...");
+          toast.error(err.message, {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         });
     }
   };
-
 
   return (
     <>
@@ -71,7 +112,7 @@ function Login() {
           />
         </div>
         <div className="forgot">
-          <a href="">Forgot Password</a>
+          <Link to="/profile/send-mail">Forgot Password</Link>
         </div>
         <div className="input-fields submit-btn">
           <button type="button" className="btn" onClick={LoginHandler}>

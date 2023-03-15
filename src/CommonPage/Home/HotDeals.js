@@ -7,14 +7,15 @@ import { FILE_UPLOADS, URL_LINK } from "../../Secure/Helper";
 function HotDeals() {
   const [data, setData] = useState([]);
   const [img, setImg] = useState("");
+  // console.log('product image -->', img);
 
   const getData = () => {
-    fetch(`${URL_LINK}/product`, {
+    fetch(`${URL_LINK}/today-hot-deals`, {
       method: "GET",
     })
       .then((res) => res.json())
       .then((result) => {
-          let fetcD = result.product_data;
+        let fetcD = result.today_deals_data;
         //   console.log('product data -->', fetcD);
         setData(fetcD);
         // // http://localhost:8000/public/image/
@@ -28,29 +29,24 @@ function HotDeals() {
   return (
     <>
       <div className="container hot-deals">
-        <GridHeading title="Hot Deals" link="/" />
+        <GridHeading title="Today Hot Deals" link="/" />
         <div className="row mb-5">
-          {data.reverse().slice(0,4).map((val, ind) => {
-            const {_id, title, link, description, image, offer} = val;
+          {data.reverse().slice(0, 4).map((val, ind) => {
+            const { _id, image, client_logo, description, link, today_offer } =
+              val;
             return (
               <div key={ind} className="col-lg-3 col-md-3 col-12">
                 <Link to={link}>
                   <div className="slider-card">
-                    <div className="card-img">
+                    <div className="image-deals">
                       <img src={`${FILE_UPLOADS}/${image}`} alt="" />
-                      <div className="link-live">
-                        <a href="" title="View Product Details">
-                          <FiEye />
-                        </a>
-                        <a href="" title="Purchase Product">
-                          <FiArrowUpRight />
-                        </a>
-                      </div>
                     </div>
-                    <div className="card-content">
-                      <h1>{title}</h1>
-                      <h6>{description}</h6>
-                      <h5>{offer}</h5>
+                    <div className="client-logo">
+                      <img src={`${FILE_UPLOADS}/${client_logo}`} alt="" />
+                    </div>
+                    <div className="deals-content">
+                      <h4>{description} </h4>
+                      <h5>{today_offer}</h5>
                     </div>
                   </div>
                 </Link>

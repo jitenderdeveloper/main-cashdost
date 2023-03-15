@@ -42,25 +42,25 @@ function Header() {
       </div>
       <div className="container-fluid p-0">
         <div className="row m-0">
-            <div className="col-lg-12 col-md-12 col-12 p-0">
-                <div className="banner-img">
-                    <img src="../assets/image/header-banner.png" alt="" />
-                </div>
+          <div className="col-lg-12 col-md-12 col-12 p-0">
+            <div className="banner-img">
+              <img src="../assets/image/header-banner.png" alt="" />
             </div>
+          </div>
         </div>
       </div>
       <div className="container p-0">
-        <div className="row m-0">
-            <div className="col-lg-6 col-md-6 col-12 p-0">
-                <div className="banner-img coupons-banner">
-                    <img src="../assets/image/coupons.png" alt="" />
-                </div>
+        <div className="row m-0 mt-4">
+          <div className="col-lg-6 col-md-6 col-12 p-0">
+            <div className="banner-img coupons-banner">
+              <img src="../assets/image/coupons.png" alt="" />
             </div>
-            <div className="col-lg-6 col-md-6 col-12 p-0">
-                <div className="banner-img coupons-banner">
-                    <img src="../assets/image/coupons2.png" alt="" />
-                </div>
+          </div>
+          <div className="col-lg-6 col-md-6 col-12 p-0">
+            <div className="banner-img coupons-banner">
+              <img src="../assets/image/coupons2.png" alt="" />
             </div>
+          </div>
         </div>
       </div>
     </>

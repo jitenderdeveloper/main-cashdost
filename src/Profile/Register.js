@@ -12,6 +12,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [password_confirmation, setPassword_Confirmation] = useState("");
 
   const nevigate = useNavigate();
 
@@ -21,11 +22,33 @@ function Register() {
       email: email,
       phone: phone,
       password: password,
+      password_confirmation: password_confirmation,
     };
-    if (!username || !email || !phone || !password) {
+    // console.log("all data ->",AllData);
+    if (!username || !email || !phone || !password || !password_confirmation) {
       toast.error("all fields are required...", {
-        theme: "light",
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
+      return;
+    } else if (password !== password_confirmation) {
+      toast.error("Password and Confirm Password doesn't match", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      return;
     } else {
       fetch(`${URL_LINK}/user/register`, {
         method: "POST",
@@ -36,11 +59,48 @@ function Register() {
       })
         .then((res) => res.json())
         .then((result) => {
-          // console.log("localStorage ->", result);
-          toast(result.message);
+          // console.log("result data ->", result.user);
+          let allResult = result.user;
+          // console.log("result data ->", allResult);
+          if (!allResult) {
+            toast.error(result.message, {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          } else {
+            toast.success(result.message, {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+
+            setTimeout(() => {
+              nevigate("/");
+            }, 2000);
+          }
         })
         .catch((err) => {
-          toast.error("Login is not working...");
+          toast.error(err.message, {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         });
     }
   };
@@ -90,6 +150,16 @@ function Register() {
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="input-fields">
+          <span className="icon">
+            <FiLock />
+          </span>
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            onChange={(e) => setPassword_Confirmation(e.target.value)}
           />
         </div>
         <div className="input-fields submit-btn">

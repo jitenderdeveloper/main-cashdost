@@ -6,10 +6,10 @@ import { FILE_UPLOADS, URL_LINK } from "../../Secure/Helper";
 
 function Coupons() {
   const [data, setData] = useState([]);
-  const [img, setImg] = useState("");
+  // const [img, setImg] = useState("");
 
   const getData = () => {
-    fetch(`${URL_LINK}/coupon`, {
+    fetch(`${URL_LINK}/tranding-coupon-offer`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -18,7 +18,7 @@ function Coupons() {
         // console.log("product data -->", fetcD);
         setData(fetcD);
         // // http://localhost:8000/public/image/
-        setImg(`${FILE_UPLOADS}/${fetcD.image}`);
+        // setImg(`${FILE_UPLOADS}/${fetcD.image}`);
       });
   };
 
@@ -30,10 +30,7 @@ function Coupons() {
       <div className="container Tranding-section">
         <GridHeading title="Trending Coupons & Offers" />
         <div className="row mb-5">
-          {data
-            .reverse()
-            .slice(0, 4)
-            .map((val, ind) => {
+          {data?.map((val, ind) => {
               const { _id, cashback, description, logo, link, offer, offer_desc } = val;
               return (
                 <div key={ind} className="col-lg-3 col-md-3 col-12">
@@ -47,7 +44,7 @@ function Coupons() {
                         <img src={`${FILE_UPLOADS}/${logo}`} alt="" />
                       </div>
                       <div className="card-content offer-content">
-                        <h6>{description}</h6>
+                        <h6 className="mb-2">{description.slice(0,50)}...</h6>
                         <h5>{cashback}</h5>
                       </div>
                       <div className="card-button">

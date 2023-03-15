@@ -3,11 +3,57 @@ import { FiArrowUpRight, FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { FILE_UPLOADS, URL_LINK } from "../../Secure/Helper";
 import ClientButton from "./ClientButton";
+import { motion } from "framer-motion";
 
 function FilterClient() {
   const [data, setData] = useState([]);
+  const [fData, setFData] = useState([]);
   const [img, setImg] = useState("");
-  console.log('image ---->',img);
+  const [filterData, setFilterData] = useState([]);
+  // console.log("filter data -->", filterData);
+
+  const allCategory = [
+    ...new Set(
+      filterData.map((val) => {
+        // console.log(val);
+          return val;
+      })
+    ),
+    "All",
+  ];
+
+  const [allCate, setCate] = useState(allCategory);
+  let ReverseData = allCategory.reverse();
+  // console.log("data ->", allCate);
+
+  const FilterFun = (ele) => {
+    // alert(ele);
+    if (ele == "All") {
+      setFData(data);
+    } else {
+      const FinalData = data.filter((val) => {
+        return val.client === ele.title;
+      });
+      // console.log("final data ->",FinalData);
+      setFData(FinalData);
+    }
+  };
+
+  const getFilterData = () => {
+    fetch(`${URL_LINK}/client-button`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        let fetcD = result.client_button;
+        setFilterData(fetcD);
+      });
+  };
+
+  useEffect(() => {
+    setFData(data);
+    setCate(allCategory);
+  }, [data]);
 
   const getData = () => {
     fetch(`${URL_LINK}/product`, {
@@ -16,54 +62,55 @@ function FilterClient() {
       .then((res) => res.json())
       .then((result) => {
         let fetcD = result.product_data;
-          // console.log('product data -->', fetcD[0].image);
         setData(fetcD);
-        // // http://localhost:8000/public/image/
-        setImg(`https://cashdost-api.vercel.app/${fetcD[0].image}`);
+        setImg(`${FILE_UPLOADS}/${fetcD.image}`);
       });
   };
 
   useEffect(() => {
     getData();
+    getFilterData();
   }, []);
 
   return (
     <>
       <div className="container client-filter-section ">
-        <ClientButton />
-        <img src={img} alt="" />
+        <ClientButton FilterFun={FilterFun} ReverseData={ReverseData}/>
         <div className="row mb-5">
-          {data
-            .reverse()
-            .slice(0, 4)
-            .map((val, ind) => {
-              const { _id, title, link, description, image, offer } = val;
-              // console.log('image ---->', image);
-              return (
-                <div key={ind} className="col-lg-3 col-md-3 col-12">
-                  <Link to={link}>
-                    <div className="slider-card">
-                      <div className="card-img">
-                        <img src={`https://cashdost-api.vercel.app/${image}`} alt="" />
-                        <div className="link-live">
-                          <a href="" title="View Product Details">
-                            <FiEye />
-                          </a>
-                          <a href="" title="Purchase Product">
-                            <FiArrowUpRight />
-                          </a>
-                        </div>
-                      </div>
-                      <div className="card-content">
-                        <h1>{title}</h1>
-                        <h6>{description}</h6>
-                        <h5>{offer}</h5>
+          {fData?.reverse().slice(0,12).map((val, ind) => {
+            const { _id, title, link, description, image, offer, client } = val;
+            // console.log('image ---->', val);
+            return (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                key={ind}
+                className="col-lg-3 col-md-3 col-12 mb-4">
+                <Link to={link}>
+                  <div className="slider-card">
+                    <div className="card-img">
+                      <img src={`${FILE_UPLOADS}/${image}`} alt="" />
+                      <div className="link-live">
+                        <Link to={`/product-product-details/${_id}`} title="View Product Details">
+                          <FiEye />
+                        </Link>
+                        <a href="" title="Purchase Product">
+                          <FiArrowUpRight />
+                        </a>
                       </div>
                     </div>
-                  </Link>
-                </div>
-              );
-            })}
+                    <div className="card-content">
+                      <h1>{title}</h1>
+                      <h6>{description}</h6>
+                      <h5>{offer}</h5>
+                      <h5>{client}</h5>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </>
